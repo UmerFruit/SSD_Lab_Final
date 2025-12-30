@@ -10,30 +10,43 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                sh 'apt install -y python3-flask'
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install flask
+                '''
             }
         }
         
         stage('Run Unit Tests') {
             steps {
-                echo 'Running unit tests...'
-                echo 'No tests defined yet - tests would run here'
+                sh '''
+                    . venv/bin/activate
+                    echo 'Running unit tests...'
+                    echo 'No tests defined yet - tests would run here'
+                '''
             }
         }
         
         stage('Build Application') {
             steps {
-                echo 'Building application...'
-                echo 'Flask app is ready for deployment'
+                sh '''
+                    . venv/bin/activate
+                    echo 'Building application...'
+                    echo 'Flask app is ready for deployment'
+                '''
             }
         }
         
         stage('Deploy Application') {
             steps {
-                echo 'Deploying application...'
-                sh 'mkdir -p /tmp/deployment'
-                sh 'cp -r * /tmp/deployment/'
-                echo 'Application deployed to /tmp/deployment'
+                sh '''
+                    . venv/bin/activate
+                    echo 'Deploying application...'
+                    mkdir -p /tmp/deployment
+                    cp -r * /tmp/deployment/
+                    echo 'Application deployed to /tmp/deployment'
+                '''
             }
         }
     }
