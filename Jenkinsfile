@@ -23,7 +23,7 @@ pipeline {
                 sh '''
                     . venv/bin/activate
                     echo 'Running unit tests...'
-                    echo 'No tests defined yet - tests would run here'
+                    python -m unittest test_app.py
                 '''
             }
         }
