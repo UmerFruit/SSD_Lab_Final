@@ -10,7 +10,7 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                sh 'pip3 install flask'
+                sh 'apt install -y python3-flask'
             }
         }
         
